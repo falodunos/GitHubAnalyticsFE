@@ -1,0 +1,24 @@
+<div class="container">
+    <div>
+        <h1>Public Repositories</h1>
+        <form #heroForm="ngForm">
+            <div class="form-group">
+                <input type="text" class="form-control" id="query" required [(ngModel)]="query" name="query"
+                    placeholder="Search GitHub Public Repositories">
+                <button (click)="getRepositories()">Search</button>
+            </div>
+
+            <div *ngFor="let repository of repositories" [class.selected]="repository === selectedRepository">
+                <div class="form-group" >
+                    <a [routerLink]="['detail']" [state]="{ commitsUrl:repository.commitsUrl , contributorsUrl:repository.contributorsUrl}" routerLinkActive="active">
+                        <label type="text" id="{{repository.id + '-name' }}">Name: {{repository.name}}</label> <br>
+                        <label type="text" id="{{repository.id + '-desc'}}">Description: {{repository.description}}</label>
+                    </a>
+                    <hr />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!--<app-repositories></app-repositories>-->
